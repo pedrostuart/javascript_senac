@@ -135,7 +135,8 @@ console.log(container.children)
 
 // .nextElementSibling / .previousElementSibling
 // Anda para o "lado", pegando o próximo irmão ou o irmão anterior.
-// let caixa1 = document.querySelector(".box"); // Pega o primeiro .box
+// let caixa1 = document.querySelector(".box"); 
+// Pega o primeiro .box
 // console.log("Próximo irmão da Caixa 1:", caixa1.nextElementSibling); // (será o div.box 2)
 //console.log(container.previousElementSibling)
 
@@ -180,23 +181,31 @@ listaToda.addEventListener("click", (e) => {
 
     //'e' é o objeto do evento de clique.
     //Aqui todas as informações que ele pode puxar
-    console.log(e)
+    console.log(e.currentTarget)
+    e.target.textContent = 'ai, me clicou'
 
     //'e.currentTarget' é o elemento que está "ouvindo" (o <ul>)
-    console.log("currentTarget (quem ouviu):", e.currentTarget);
+   // console.log("currentTarget (quem ouviu):", e.currentTarget);
     
     //'e.target' é o elemento que foi REALMENTE clicado (o <li> específico)
-    console.log("target (quem foi clicado):", e.target);
+    //console.log("target (quem foi clicado):", e.target);
 
     //Agora podemos fazer coisas com o alvo!
-    e.target.textContent = "Eu fui clicado!";
+   // e.target.textContent = "Eu fui clicado!";
 });
 
 
 //desafios
 
-// 3. faça com que a seção "Seção de travessia" tenha a mesma funcionalidade
+// 1. faça com que a seção "Seção de travessia" tenha a mesma funcionalidade
 //   ao clicar nas caixas
+
+let box = document.querySelector(".container")
+box.children[1,2]
+
+box.addEventListener("click", (b)=>{
+    b.target.textContent = "Clicado" 
+})
 
 //------------------------------------------------------------
 // 3. Delegação de Eventos (Juntando tudo)
@@ -224,10 +233,10 @@ listaToda.addEventListener("click", (e) => {
     
      if (e.target.tagName === 'LI') {
         // 3. Sim, foi um <li>! Agora podemos agir nele.
-         console.log("Um item da lista foi clicado:", e.target.textContent);
+         //console.log("Um item da lista foi clicado:", e.target.textContent);
         
         // 4. Vamos aplicar a classe 'destaque' SÓ nele:
-         e.target.classList.toggle("destaque");
+         //e.target.classList.toggle("destaque");
      }
  });
 
@@ -254,6 +263,22 @@ listaToda.addEventListener("click", (e) => {
 //    e.preventDefault(); // Bloqueia a navegação
 //    alert("Link bloqueado pelo JavaScript!");
 // });
+
+let formulario =document.getElementById("meu-formulario")
+
+formulario.addEventListener("submit",(e) =>{
+    e.preventDefault()
+    
+    let mensagemDeEnvio = document.createElement("p")
+    mensagemDeEnvio.textContent = 'vc enviou o form'
+    formulario.appendChild(mensagemDeEnvio)
+    if(formulario.children.length > 3){
+        mensagemDeEnvio.remove()
+    }
+    
+    
+})
+
 
 
 //desafios
