@@ -62,12 +62,14 @@
     <hr>
 
     <h2>Seção de preventDefault</h2>
-    <a id="link-teste" href="https://www.google.com">Link para o Google (será bloqueado)</a>
-    
-    <form id="meu-formulario">
-        <input type="text" placeholder="Formulário (será bloqueado)">
-        <button type="submit">Enviar (recarrega a página)</button>
-    </form>
+    <div class="preventDefault">
+        <a id="link-teste" href="https://www.google.com">Link para o Google (será bloqueado)</a>
+        
+        <form id="meu-formulario">
+            <input type="text" placeholder="Formulário (será bloqueado)">
+            <button type="submit">Enviar (recarrega a página)</button>
+        </form>
+    </div>
 
 </body>
 
@@ -266,7 +268,7 @@ box.addEventListener("click", (b)=>{
 
 let formulario =document.getElementById("meu-formulario")
 
-formulario.addEventListener("submit",(e) =>{
+/*formulario.addEventListener("submit",(e) =>{
     e.preventDefault()
     
     let mensagemDeEnvio = document.createElement("p")
@@ -277,7 +279,7 @@ formulario.addEventListener("submit",(e) =>{
     }
     
     
-})
+})*/
 
 
 
@@ -285,9 +287,34 @@ formulario.addEventListener("submit",(e) =>{
 
 //Tente bloquear o recarregamento de pagina causado pelo Envio (submit) do formulario
 
+formulario.addEventListener('submit',(e) =>{
+    e.preventDefault() 
+}
+)
+
 // let formulario = document.querySelector("#meu-formulario");
 // O evento para formulários não é 'click', é 'submit'
 
+//tente bloquear a mudança de página do link com o id "link-teste"
+
+let link = document.getElementById("link-teste")
+
+link.addEventListener("click", (l) =>{
+    l.preventDefault()
+
+    let div = document.querySelector(".preventDefault")
+    
+    let paragrafo = document.createElement("p")
+    paragrafo.textContent = "Link nao esta funcionando"
+
+    link.after(paragrafo)
+
+    if(div.children.length > 3){
+        paragrafo.remove()
+    }    
+    
+})
+    
 
 </script>
 </html>
